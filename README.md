@@ -1,4 +1,4 @@
 TuxPass
 =======
 
-Password manager
+Password manager in QT c++
