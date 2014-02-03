@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-02-03T12:51:03
+# Project created by QtCreator 2014-02-03T23:53:57
 #
 #-------------------------------------------------
 
@@ -13,11 +13,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    form.cpp
+        login.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h \
-    form.h
+HEADERS  += login.h \
+    mainwindow.h
 
-FORMS    += mainwindow.ui \
-    form.ui
+FORMS    += login.ui \
+    mainwindow.ui
+
+RESOURCES += \
+    icons/rec.qrc
+
+
+OTHER_FILES +=

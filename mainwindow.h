@@ -1,31 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <form.h>
+#include <QDialog>
 
 namespace Ui {
-class MainWindow;
+class mainwindow;
 }
 
-class MainWindow : public QMainWindow
+class mainwindow : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-
-public slots:
-    void openmainF();
+    explicit mainwindow(QWidget *parent = 0);
+    ~mainwindow();
     
-private slots:
-    void on_pushButton_clicked();
-
 private:
-    Ui::MainWindow *ui;
-    Form    *winMain;
-
+    Ui::mainwindow *ui;
 };
 
 #endif // MAINWINDOW_H

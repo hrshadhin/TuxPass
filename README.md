@@ -1,4 +1,0 @@
-TuxPass
-=======
-
-Password manager

@@ -1,28 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+mainwindow::mainwindow(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::mainwindow)
 {
     ui->setupUi(this);
 }
 
-MainWindow::~MainWindow()
+mainwindow::~mainwindow()
 {
     delete ui;
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-   openmainF();
-}
-
-void MainWindow::openmainF()
-{
-
-    winMain = new Form(this);
-    winMain->show();
-    this->hide();
-
 }
