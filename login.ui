@@ -48,7 +48,7 @@
       <x>290</x>
       <y>40</y>
       <width>291</width>
-      <height>191</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="cursor">
@@ -56,6 +56,12 @@
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 170, 0);</string>
     </property>
     <property name="title">
      <string>Login</string>
@@ -90,10 +96,16 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>150</y>
-       <width>67</width>
-       <height>17</height>
+       <y>120</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
      <property name="text">
       <string>+[Status]</string>
@@ -132,12 +144,16 @@
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Password</string>
+           <string>Password </string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_2"/>
+         <widget class="QLineEdit" name="lineEdit_2">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -153,6 +169,12 @@
       <height>241</height>
      </rect>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::WinPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -163,6 +185,11 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
  <resources>
   <include location="icons/rec.qrc"/>
  </resources>

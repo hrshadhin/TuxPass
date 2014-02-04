@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "QtSql/QtSql"
 mainwindow::mainwindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::mainwindow)
@@ -11,4 +11,9 @@ mainwindow::mainwindow(QWidget *parent) :
 mainwindow::~mainwindow()
 {
     delete ui;
+}
+
+void mainwindow::on_pushButton_4_clicked()
+{
+    this->close();
 }

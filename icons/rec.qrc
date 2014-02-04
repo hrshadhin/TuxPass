@@ -1,7 +1,13 @@
 <RCC>
-<qresource prefix="/">
-<file>banner.png</file>
-<file>login.ico</file>
-<file>icon.png</file>
-</qresource>
+    <qresource prefix="/">
+        <file>banner.png</file>
+        <file>login.ico</file>
+        <file>icon.png</file>
+        <file>exit.ico</file>
+        <file>info.ico</file>
+        <file>search.ico</file>
+        <file>setting.ico</file>
+        <file>user.ico</file>
+        <file>add.ico</file>
+    </qresource>
 </RCC>
