@@ -1,6 +1,7 @@
 #include "database.h"
 #include <QSql>
 #include <QString>
+#include <QDbug>
 database::database()
 {
 }
