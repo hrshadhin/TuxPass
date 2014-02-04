@@ -6,7 +6,7 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
-    ui->label_3->setText("K");
+
 
 }
 
