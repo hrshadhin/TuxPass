@@ -1,6 +1,5 @@
 #ifndef LOGIN_H
 #define LOGIN_H
-
 #include <QMainWindow>
 #include <mainwindow.h>
 namespace Ui {
@@ -21,6 +20,7 @@ private slots:
 private:
     Ui::login *ui;
     mainwindow mainF;
+
 };
 
 #endif // LOGIN_H

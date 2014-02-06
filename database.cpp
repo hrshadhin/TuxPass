@@ -1,26 +1,11 @@
 #include "database.h"
-#include <QSql>
+#include <QDebug>
 #include <QString>
-#include <QDbug>
-database::database()
+database::database(QWidget *parent) :
+    QWidget(parent)
 {
 }
-/*QString database::connect()
-{
-    QSqlDatabase db = QSqlDatabase::addDatabase( "QSQLITE" );
-    QDir dir(QApplication::applicationDirPath()+"/db/");
-    db.setDatabaseName(dir.filePath("main.sdb"));
-    if( !db.open() )
-      {
-        return false;
 
-      }
-      else{
-        return true;
-
-    }
-
-
-      db.close();
-}*/
-
+QString database::hello(){
+    return " Hello from db";
+}
