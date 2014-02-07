@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QDialog>
-
+#include <adddb.h>
 namespace Ui {
 class mainwindow;
 }
@@ -17,6 +17,8 @@ public:
     
 private slots:
     void on_pushButton_4_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::mainwindow *ui;

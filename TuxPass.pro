@@ -16,14 +16,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         login.cpp \
     mainwindow.cpp \
-    database.cpp
+    database.cpp \
+    adddb.cpp
 
 HEADERS  += login.h \
     mainwindow.h \
-    database.h
+    database.h \
+    adddb.h
 
 FORMS    += login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    adddb.ui
 
 RESOURCES += \
     icons/rec.qrc

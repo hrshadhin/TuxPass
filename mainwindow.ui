@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>619</width>
-    <height>407</height>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>TuxPass Beta</string>
@@ -25,11 +31,11 @@
        <item>
         <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>Account</string>
+          <string>  Add DB</string>
          </property>
          <property name="icon">
           <iconset resource="icons/rec.qrc">
-           <normaloff>:/user.ico</normaloff>:/user.ico</iconset>
+           <normaloff>:/adddb.ico</normaloff>:/adddb.ico</iconset>
          </property>
          <property name="iconSize">
           <size>

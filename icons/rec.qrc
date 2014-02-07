@@ -9,5 +9,6 @@
         <file>setting.ico</file>
         <file>user.ico</file>
         <file>add.ico</file>
+        <file>adddb.ico</file>
     </qresource>
 </RCC>

@@ -17,3 +17,10 @@ void mainwindow::on_pushButton_4_clicked()
 {
     this->close();
 }
+
+void mainwindow::on_pushButton_clicked()
+{
+    adddb adform;
+    adform.setModal(true);
+    adform.exec();
+}

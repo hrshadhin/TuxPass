@@ -1,7 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 #include <QWidget>
-#include <QString>
+
 class database : public QWidget
 {
     Q_OBJECT
@@ -11,7 +11,10 @@ public:
 signals:
     
 public slots:
-    QString hello();
+    QString connect();
+    void dbclose();
+    QString login(QString user,QString pass);
+    QString createdb(QString dbname,QString pass);
     
 };
 
