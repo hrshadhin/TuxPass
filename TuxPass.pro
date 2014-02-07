@@ -15,18 +15,21 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         login.cpp \
-    mainwindow.cpp \
     database.cpp \
-    adddb.cpp
+    adddb.cpp \
+    loaddb.cpp \
+    mainui.cpp
 
 HEADERS  += login.h \
-    mainwindow.h \
     database.h \
-    adddb.h
+    adddb.h \
+    loaddb.h \
+    mainui.h
 
 FORMS    += login.ui \
-    mainwindow.ui \
-    adddb.ui
+    adddb.ui \
+    loaddb.ui \
+    mainui.ui
 
 RESOURCES += \
     icons/rec.qrc

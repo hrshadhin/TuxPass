@@ -52,7 +52,7 @@ QString database::login(QString user,QString pass){
         }
 
     }
-    dbclose();
+
     return suck;
 
 

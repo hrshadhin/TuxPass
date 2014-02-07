@@ -1,8 +1,8 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 #include <QMainWindow>
-#include <mainwindow.h>
-
+#include <mainui.h>
+#include <loaddb.h>
 namespace Ui {
 class login;
 }
@@ -20,7 +20,8 @@ private slots:
 
 private:
     Ui::login *ui;
-    mainwindow mainF;
+    mainUi mainF;
+    loaddb ldbForm;
 
 
 };

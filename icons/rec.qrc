@@ -10,5 +10,7 @@
         <file>user.ico</file>
         <file>add.ico</file>
         <file>adddb.ico</file>
+        <file>dbload.ico</file>
+        <file>loadd.ico</file>
     </qresource>
 </RCC>

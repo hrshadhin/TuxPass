@@ -30,7 +30,10 @@ void login::on_pushButton_clicked()
     database db(this);
     QString result=db.login(ui->lineEdit->text(),ui->lineEdit_2->text());
     if(result=="true"){
+        db.dbclose();
         mainF.show();
+       ldbForm.setModal(true);
+        ldbForm.show();
         this->hide();
     }
     else{
