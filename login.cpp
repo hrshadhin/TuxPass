@@ -32,8 +32,7 @@ void login::on_pushButton_clicked()
     if(result=="true"){
         db.dbclose();
         mainF.show();
-       ldbForm.setModal(true);
-        ldbForm.show();
+
         this->hide();
     }
     else{

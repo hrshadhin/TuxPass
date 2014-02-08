@@ -15,6 +15,7 @@ public slots:
     void dbclose();
     QString login(QString user,QString pass);
     QString createdb(QString dbname,QString pass);
+    QString loaddb(QString dbname,QString pass);
     
 };
 

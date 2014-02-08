@@ -1,6 +1,5 @@
 #ifndef LOADDB_H
 #define LOADDB_H
-
 #include <QDialog>
 
 namespace Ui {
@@ -14,12 +13,15 @@ class loaddb : public QDialog
 public:
     explicit loaddb(QWidget *parent = 0);
     ~loaddb();
+    QString myVal();
+
     
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::loaddb *ui;
+
 };
 
 #endif // LOADDB_H

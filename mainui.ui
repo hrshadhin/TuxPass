@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>TuxPass Beta</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons/rec.qrc">

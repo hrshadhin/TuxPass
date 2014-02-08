@@ -120,3 +120,21 @@ QString database::createdb(QString dbname,QString pass){
     }
      return success;
 }
+QString database::loaddb(QString dbname,QString pass){
+    QDir dir(QApplication::applicationDirPath()+"/db/");
+     db.setDatabaseName(dir.filePath(dbname));
+     QString rel="false";
+     if(db.open() )
+      {
+
+          rel= "<font color='green'>[+]Connected DB: "+dbname+"</font>";
+
+      }
+      else{
+
+         rel= "<font color='red'>[+]DB couldn't open!</font>";
+
+    }
+     \
+     return rel;
+}

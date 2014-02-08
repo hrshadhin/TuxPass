@@ -29,5 +29,7 @@ void mainUi::on_pushButton_5_clicked()
 {
 
     ldbform.setModal(true);
-    ldbform.show();
+
+    ldbform.exec();
+    ui->label_3->setText(ldbform.myVal());
 }

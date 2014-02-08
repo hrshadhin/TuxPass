@@ -3,6 +3,8 @@
 #include <QDir>
 #include <QDebug>
 #include <QMessageBox>
+#include <database.h>
+QString gval="<font color='blue'>[+]Connected DB: None</font>";
 loaddb::loaddb(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::loaddb)
@@ -22,7 +24,9 @@ loaddb::loaddb(QWidget *parent) :
 
 
 }
-
+QString loaddb::myVal(){
+    return gval;
+}
 loaddb::~loaddb()
 {
     delete ui;
@@ -30,12 +34,18 @@ loaddb::~loaddb()
 
 void loaddb::on_pushButton_clicked()
 {
-    if(ui->listWidget->currentItem()->text()=="" || ui->lineEdit_2->text()=="")
+    if(ui->listWidget->selectedItems().count()!=1 || ui->lineEdit_2->text()=="")
     {
         qDebug()<<"Please seltect one db and give passwod";
     }
     else
     {
-        qDebug()<<ui->listWidget->currentItem()->text()+ui->lineEdit_2->text();
+        database db(this);
+        QString rel=db.loaddb(ui->listWidget->currentItem()->text(),ui->lineEdit_2->text());
+        gval=rel;
+        ui->lineEdit_2->setText("");
+        ui->listWidget->clearSelection();
+        this->close();
+
     }
 }
