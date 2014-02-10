@@ -12,5 +12,12 @@
         <file>adddb.ico</file>
         <file>dbload.ico</file>
         <file>loadd.ico</file>
+        <file>copy.ico</file>
+        <file>date.ico</file>
+        <file>gen.ico</file>
+        <file>openurl.ico</file>
+        <file>save.ico</file>
+        <file>dedb.ico</file>
+        <file>addentity.ico</file>
     </qresource>
 </RCC>

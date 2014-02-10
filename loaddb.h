@@ -14,6 +14,7 @@ public:
     explicit loaddb(QWidget *parent = 0);
     ~loaddb();
     QString myVal();
+    QString gval;
 
     
 private slots:

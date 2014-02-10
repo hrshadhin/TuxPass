@@ -18,13 +18,15 @@ SOURCES += main.cpp\
     database.cpp \
     adddb.cpp \
     loaddb.cpp \
-    mainui.cpp
+    mainui.cpp \
+    passgenerate.cpp
 
 HEADERS  += login.h \
     database.h \
     adddb.h \
     loaddb.h \
-    mainui.h
+    mainui.h \
+    passgenerate.h
 
 FORMS    += login.ui \
     adddb.ui \

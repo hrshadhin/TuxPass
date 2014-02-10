@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <adddb.h>
 #include <loaddb.h>
+#include <QListWidgetItem>
+
 namespace Ui {
 class mainUi;
 }
@@ -22,10 +24,23 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_pushButton_6_clicked();
+    void itemClicked(QListWidgetItem* item);
+
+    void clear();
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_12_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_13_clicked();
+
 private:
     Ui::mainUi *ui;
     adddb adbfrom;
     loaddb ldbform;
+
 };
 
 #endif // MAINUI_H

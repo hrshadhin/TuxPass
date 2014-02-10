@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QFile>
+#include <QSqlRecord>
 QSqlDatabase db = QSqlDatabase::addDatabase( "QSQLITE" );
 database::database(QWidget *parent) :
     QWidget(parent)
@@ -73,7 +74,7 @@ QString database::createdb(QString dbname,QString pass){
 
            if (db.open()) {
                //create password table
-               const QString createTb = "CREATE TABLE IF NOT EXISTS password ('pass VARCHAR not null');";
+               const QString createTb = "CREATE TABLE IF NOT EXISTS password (pass varchar not null);";
                        QSqlQuery queryt1(db);
                        if (queryt1.exec(createTb)) {
                            success="<font color='green'>[+] Database created.</font>";
@@ -127,7 +128,28 @@ QString database::loaddb(QString dbname,QString pass){
      if(db.open() )
       {
 
-          rel= "<font color='green'>[+]Connected DB: "+dbname+"</font>";
+
+          QSqlQuery qry(db);
+          if(qry.exec("select pass from password where pass='"+pass+"';"))
+          {
+              int count=0;
+              while(qry.next()){
+                  count++;
+              }
+              if(count==1){
+                  rel="successfull";
+              }
+              else if(count<1){
+                  rel="<font color='red'>Password wrong!</font>";
+              }
+
+          }
+          else{
+              rel=qry.lastError().text();
+          }
+
+
+
 
       }
       else{
@@ -137,4 +159,76 @@ QString database::loaddb(QString dbname,QString pass){
     }
      \
      return rel;
+}
+
+QList<QStringList> database::loaddata(){
+      QList<QStringList> list;
+      QStringList fieldNames;
+
+     db.open();
+      QSqlQuery q( "Select * from data;" );
+      QSqlRecord rec = q.record();
+
+      // Put field names in string list
+      for( int i=0; i<rec.count(); ++i )
+          fieldNames << rec.fieldName( i );
+
+      // Store names to list
+      list << fieldNames;
+      // Print data based on fields
+          foreach( QString str, fieldNames ){
+              QStringList dbData;
+              while( q.next() ){
+                  dbData << q.value(rec.indexOf( str )).toString();
+              }
+              q.seek(-1);
+              list << dbData;
+              // since next at end - start at top again for next pass
+          }
+          // Store dbData in List when complete
+
+          return list;
+
+}
+
+QString database::insertdata(QString dbname,QString name,QString uname,QString pass,QString url,QString date){
+    QDir dir(QApplication::applicationDirPath()+"/db/");
+     db.setDatabaseName(dir.filePath(dbname));
+     QString rel="false";
+     if(db.open() )
+      {
+         QSqlQuery qry(db);
+         QString q="insert into data values('"+name+"','"+uname+"','"+pass+"','"+url+"','"+date+"');";
+         /*if(qry.exec(q))
+         {
+             int count=0;
+             while(qry.next()){
+                 count++;
+             }
+             if(count==1){
+                 rel="successfull";
+             }
+             else if(count<1){
+                 rel="<font color='red'>Password wrong!</font>";
+             }
+
+         }
+         else{
+             rel=qry.lastError().text();
+         }*/
+         qry.exec(q);
+         rel=qry.lastQuery();
+
+
+
+
+     }
+     else{
+
+        rel= "<font color='red'>[+]DB couldn't open!</font>";
+
+   }
+
+     return rel;
+
 }

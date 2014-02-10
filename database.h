@@ -16,6 +16,8 @@ public slots:
     QString login(QString user,QString pass);
     QString createdb(QString dbname,QString pass);
     QString loaddb(QString dbname,QString pass);
+    QList<QStringList> loaddata();
+    QString insertdata(QString dbname,QString name,QString uname,QString pass,QString url,QString date);
     
 };
 
