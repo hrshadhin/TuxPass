@@ -12,6 +12,17 @@ database::database(QWidget *parent) :
     QWidget(parent)
 {
 }
+void database::setdb(QString dbname){
+    QDir dir(QApplication::applicationDirPath()+"/db/");
+     db.setDatabaseName(dir.filePath(dbname));
+}
+
+QStringList database::dblist(){
+    QStringList nameFilter("*.sdb");
+    QDir dir(QApplication::applicationDirPath()+"/db/");
+    QStringList dbfiles = dir.entryList(nameFilter);
+    return dbfiles;
+}
 
 QString database::connect(){
         QDir dir(QApplication::applicationDirPath()+"/db/");
@@ -199,25 +210,8 @@ QString database::insertdata(QString dbname,QString name,QString uname,QString p
       {
          QSqlQuery qry(db);
          QString q="insert into data values('"+name+"','"+uname+"','"+pass+"','"+url+"','"+date+"');";
-         /*if(qry.exec(q))
-         {
-             int count=0;
-             while(qry.next()){
-                 count++;
-             }
-             if(count==1){
-                 rel="successfull";
-             }
-             else if(count<1){
-                 rel="<font color='red'>Password wrong!</font>";
-             }
-
-         }
-         else{
-             rel=qry.lastError().text();
-         }*/
          qry.exec(q);
-         rel=qry.lastQuery();
+         rel=qry.lastError().text();
 
 
 
@@ -228,7 +222,7 @@ QString database::insertdata(QString dbname,QString name,QString uname,QString p
         rel= "<font color='red'>[+]DB couldn't open!</font>";
 
    }
-
+   db.close();
      return rel;
 
 }

@@ -18,6 +18,8 @@ public slots:
     QString loaddb(QString dbname,QString pass);
     QList<QStringList> loaddata();
     QString insertdata(QString dbname,QString name,QString uname,QString pass,QString url,QString date);
+    void setdb(QString dbname);
+    QStringList dblist();
     
 };
 

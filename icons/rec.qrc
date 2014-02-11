@@ -19,5 +19,6 @@
         <file>save.ico</file>
         <file>dedb.ico</file>
         <file>addentity.ico</file>
+        <file>reload.ico</file>
     </qresource>
 </RCC>

@@ -5,6 +5,10 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include <passgenerate.h>
+#include <endecrypter.h>
+#include <QClipboard>
+#include <QDesktopServices>
+#include <QUrl>
 QString gdbstatus="<font color='blue'>[+]No Connected DB: None</font>";
 
 QList<QStringList> List;
@@ -28,6 +32,12 @@ void mainUi::on_pushButton_clicked()
     adddb adform(this);
     adform.setModal(true);
     adform.exec();
+    if(ui->label_status->text().compare("<font color='blue'>[+]No Connected DB: None</font>")!=0){
+        QStringList ls = ui->label_status->text().split(':');
+        QStringList mls =ls[1].split('<');
+        database setdb;
+        setdb.setdb(mls[0]);
+    }
 }
 
 void mainUi::on_pushButton_4_clicked()
@@ -49,28 +59,33 @@ void mainUi::on_pushButton_5_clicked()
 
      if(strnew.contains("DB is:")){
 
-        database datab;
-        datab.dbclose();
-        ui->listWidget->clear();
-        ui->label_name1->setText("");
-        ui->lineEdit_uname1->setText("");
-        ui->lineEdit_pass1->setText("");
-        ui->lineEdit_url1->setText("");
-        ui->label_date1->setText("");
-       List= datab.loaddata();
-       int i=0;
-       int entityLen = List[1].count();
-       ui->listWidget->clear();
-       while(i<entityLen){
-           ui->listWidget->addItem(List[1][i]);
-           i++;
-       }
-        ui->label_status->setText(strnew);
+         dataload();
+         ui->label_status->setText(strnew);
 
      }
 
 
 
+
+}
+void mainUi::dataload(){
+    database datab;
+    datab.dbclose();
+    ui->listWidget->clear();
+    ui->label_name1->setText("");
+    ui->lineEdit_uname1->setText("");
+    ui->lineEdit_pass1->setText("");
+    ui->lineEdit_url1->setText("");
+    ui->label_date1->setText("");
+   List= datab.loaddata();
+   int i=0;
+   int entityLen = List[1].count();
+   ui->listWidget->clear();
+   enDecrypter endecry;
+   while(i<entityLen){
+       ui->listWidget->addItem(endecry.encrypt(List[1][i]));
+       i++;
+   }
 
 }
 
@@ -91,9 +106,9 @@ void mainUi::on_pushButton_6_clicked()
 
 void mainUi::itemClicked(QListWidgetItem* item)
     {
-
+        enDecrypter endecry;
     int len=List[1].count(),j=0;
-     QString nstr=item->text();
+     QString nstr=endecry.encrypt(item->text());
      int destiny;
      while(j<len){
          if(List[1][j].compare(nstr)==0){
@@ -112,11 +127,11 @@ void mainUi::itemClicked(QListWidgetItem* item)
          sdata<<List[k][destiny];
          k++;
      }
-     ui->label_name1->setText(sdata[0]);
-     ui->lineEdit_uname1->setText(sdata[1]);
-     ui->lineEdit_pass1->setText(sdata[2]);
-     ui->lineEdit_url1->setText(sdata[3]);
-     ui->label_date1->setText(sdata[4]);
+     ui->label_name1->setText(endecry.encrypt(sdata[0]));
+     ui->lineEdit_uname1->setText(endecry.encrypt(sdata[1]));
+     ui->lineEdit_pass1->setText(endecry.encrypt(sdata[2]));
+     ui->lineEdit_url1->setText(endecry.encrypt(sdata[3]));
+     ui->label_date1->setText(endecry.encrypt(sdata[4]));
 
   }
 
@@ -149,9 +164,10 @@ void mainUi::on_pushButton_12_clicked()
 void mainUi::on_pushButton_10_clicked()
 {
     passgenerate genP;
-    ui->lineEdit_pass2->setText(genP.genPass());
+    QString gnp=genP.genPass();
+    ui->lineEdit_pass2->setText(gnp);
 }
-
+//data save operations
 void mainUi::on_pushButton_13_clicked()
 {
     if(ui->label_status->text().compare(gdbstatus)==0){
@@ -167,8 +183,58 @@ void mainUi::on_pushButton_13_clicked()
         QStringList ls = ui->label_status->text().split(':');
         QStringList mls =ls[1].split('<');
 
+
+         enDecrypter endecry;
+         QString name=endecry.encrypt(ui->lineEdit_name2->text());
+         QString uname=endecry.encrypt(ui->lineEdit_uname2->text());
+         QString pass=endecry.encrypt(ui->lineEdit_pass2->text());
+         QString url=endecry.encrypt(ui->lineEdit_url2->text());
+         QString datetime=endecry.encrypt(ui->lineEdit_date2->text());
+
          database dbinsert;
-         QString res=dbinsert.insertdata(mls[0],ui->lineEdit_name2->text(),ui->lineEdit_uname2->text(),ui->lineEdit_pass2->text(),ui->lineEdit_url2->text(),ui->lineEdit_date2->text());
-         qDebug() << res;
+         QString res=dbinsert.insertdata(mls[0],name,uname,pass,url,datetime);
+
+         if(res.compare(" ")==0){
+             QMessageBox::information(0, QString("Info"), QString("<font color='green'>Infomations saved successfully.:)</font>"));
+             ui->lineEdit_name2->setText("");
+             ui->lineEdit_uname2->setText("");
+             ui->lineEdit_pass2->setText("");
+             ui->lineEdit_url2->setText("");
+             ui->lineEdit_date2->setText("");
+             dataload();
+
+         }
+         else
+         {
+             QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>"+res+"!!!</font>"));
+         }
+
+
     }
+}
+
+
+
+void mainUi::on_pushButton_11_clicked()
+{
+    QClipboard *clip;
+    clip->setText(ui->lineEdit_pass2->text());
+}
+
+void mainUi::on_pushButton_8_clicked()
+{
+    QClipboard *clip;
+    clip->setText(ui->lineEdit_pass1->text());
+}
+
+void mainUi::on_pushButton_7_clicked()
+{
+    QClipboard *clip;
+    clip->setText(ui->lineEdit_uname1->text());
+}
+
+void mainUi::on_pushButton_9_clicked()
+{
+
+    QDesktopServices::openUrl(QUrl(ui->lineEdit_url1->text(), QUrl::TolerantMode));
 }

@@ -1,7 +1,6 @@
 #ifndef LOADDB_H
 #define LOADDB_H
 #include <QDialog>
-
 namespace Ui {
 class loaddb;
 }
@@ -15,6 +14,7 @@ public:
     ~loaddb();
     QString myVal();
     QString gval;
+
 
     
 private slots:

@@ -25,7 +25,7 @@ QString passgenerate::genPass(){
     int numberOfSym = randomNum(5);
     int positionForSym, theSym;
     for (i = 0; i < numberOfSym; i++) {
-        positionForSym = randomNum(26);
+        positionForSym = randomNum(20);
         theSym = randomNum(21);
          StrongPasswordArray[positionForSym] = theSymbols[theSym];
     }
@@ -33,7 +33,7 @@ QString passgenerate::genPass(){
     int numberOfDigits = randomNum(5) +1;
     int positionForNumeric, theNumber;
     for (i = 0; i < numberOfDigits; i++) {
-        positionForNumeric = randomNum(26);
+        positionForNumeric = randomNum(20);
         theNumber = randomNum(9);
         theNumber +=48;
          StrongPasswordArray[positionForNumeric] = (char)theNumber;

@@ -308,7 +308,14 @@
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_5">
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_pass1"/>
+                     <widget class="QLineEdit" name="lineEdit_pass1">
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+                      <property name="readOnly">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <widget class="QPushButton" name="pushButton_8">

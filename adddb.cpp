@@ -1,6 +1,7 @@
 #include "adddb.h"
 #include "ui_adddb.h"
 #include "database.h"
+#include <loaddb.h>
 adddb::adddb(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::adddb)

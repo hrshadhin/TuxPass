@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <database.h>
 QString gval="";
+
 loaddb::loaddb(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::loaddb)
@@ -13,9 +14,9 @@ loaddb::loaddb(QWidget *parent) :
     ui->setupUi(this);
     //
    //call dblist
-    QStringList nameFilter("*.sdb");
-    QDir dir(QApplication::applicationDirPath()+"/db/");
-    QStringList dbfiles = dir.entryList(nameFilter);
+   QStringList nameFilter("*.sdb");
+   QDir dir(QApplication::applicationDirPath()+"/db/");
+   QStringList dbfiles = dir.entryList(nameFilter);
     foreach (QString item, dbfiles) {
         if(!(item=="main.sdb")){
             ui->listWidget->addItem(item);
@@ -24,6 +25,7 @@ loaddb::loaddb(QWidget *parent) :
     ui->lineEdit_2->setText("");
     ui->listWidget->clearSelection();
     gval="<font color='blue'>[+]Connected DB: None</font>";
+
 
 
 }
