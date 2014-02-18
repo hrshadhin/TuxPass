@@ -20,5 +20,8 @@
         <file>dedb.ico</file>
         <file>addentity.ico</file>
         <file>reload.ico</file>
+        <file>delete.ico</file>
+        <file>update.ico</file>
+        <file>remove.ico</file>
     </qresource>
 </RCC>

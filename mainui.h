@@ -46,10 +46,23 @@ private slots:
 
     void on_pushButton_9_clicked();
 
+    void on_lineEdit_filter_textChanged(const QString &arg1);
+
+    void on_lineEdit_filter_update_textChanged(const QString &arg1);
+
+    void on_lineEdit_filter_delete_textChanged(const QString &arg1);
+    QStringList getIteminfo(QString x);
+    void itemClickedUp(QListWidgetItem* item);
+    void itemClickedDel(QListWidgetItem* item);
+    QString datetimenow();
+
+    void on_btnUpdate_clicked();
+
 private:
     Ui::mainUi *ui;
     adddb adbfrom;
     loaddb ldbform;
+
 
 };
 
