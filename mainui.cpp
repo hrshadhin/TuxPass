@@ -308,12 +308,66 @@ void mainUi::on_lineEdit_filter_delete_textChanged(const QString &arg1)
 
 void mainUi::on_btnUpdate_clicked()
 {
-    if(ui->lineEdit_nameUdate->text()=="" || ui->lineEdit_unameUpdate->text()==""|| ui->lineEdit_urlUpdate->text()==""){
+
+    if(ui->label_status->text().compare(gdbstatus)==0){
+        QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>Database hasn't selected yet.\nFirst load database by 'Load DB' from control panel</font>"));
+
+    }
+    else if(ui->lineEdit_nameUdate->text()=="" || ui->lineEdit_unameUpdate->text()==""|| ui->lineEdit_urlUpdate->text()==""){
         QMessageBox::critical(0, QString("Error!"), QString("<font color='red'> You left empty fields!!!</font>"));
 
     }
-    else if(ui->label_status->text().compare(gdbstatus)==0){
+    else
+    {
+        QStringList ls = ui->label_status->text().split(':');
+        QStringList mls =ls[1].split('<');
+        database dbplayer;
+        enDecrypter encry;
+        QString name =encry.encrypt(ui->lineEdit_nameUdate->text());
+        QString uname =encry.encrypt(ui->lineEdit_unameUpdate->text());
+        QString pass=encry.encrypt(ui->lineEdit_passUpdate->text());
+        QString url=encry.encrypt(ui->lineEdit_urlUpdate->text());
+        QString date=encry.encrypt(datetimenow());
+        QString cname = encry.encrypt(ui->listWidget_update->currentItem()->text());
+        dbplayer.setdb(mls[0]);
+        QString result=dbplayer.updateData(cname,name,uname,pass,url,date);
+        if(result.compare(" ")==0)
+        {
+            QMessageBox::information(0, QString("info"), QString("<font color='green'>Entity update successfully.</font>"));
+            dataload();
+            ui->lineEdit_nameUdate->setText("");
+            ui->lineEdit_unameUpdate->setText("");
+            ui->lineEdit_passUpdate->setText("");
+            ui->lineEdit_urlUpdate->setText("");
+
+
+
+        }else
+        {
+            QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>"+result+"</font>"));
+        }
+
+
+
+
+    }
+}
+
+void mainUi::on_btnGenUpdate_clicked()
+{
+    passgenerate genP;
+    QString gnp=genP.genPass();
+    ui->lineEdit_passUpdate->setText(gnp);
+}
+
+void mainUi::on_pushButton_20_clicked()
+{
+    if(ui->label_status->text().compare(gdbstatus)==0){
         QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>Database hasn't selected yet.\nFirst load database by 'Load DB' from control panel</font>"));
+
+    }
+    else if(ui->label_entyNameDel->text().compare("N/A")==0){
+        QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>First select a entity from listbox!!!</font>"));
 
     }
     else
@@ -322,7 +376,16 @@ void mainUi::on_btnUpdate_clicked()
         QStringList mls =ls[1].split('<');
         database dbplayer;
         dbplayer.setdb(mls[0]);
-
-
+        enDecrypter entry;
+        QString result=dbplayer.deleteEntity(entry.encrypt(ui->label_entyNameDel->text()));
+        if(result.compare(" ")==0)
+        {
+            QMessageBox::information(0, QString("info"), QString("<font color='green'>Entity deleted successfully.</font>"));
+            dataload();
+            ui->label_entyNameDel->setText("N/A");
+        }else
+        {
+            QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>"+result+"</font>"));
+        }
     }
 }

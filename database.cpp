@@ -226,3 +226,46 @@ QString database::insertdata(QString dbname,QString name,QString uname,QString p
      return rel;
 
 }
+
+QString database::updateData(QString cname,QString name,QString uname,QString pass,QString url,QString date){
+    QString rel="false";
+    if(db.open() )
+     {
+        QSqlQuery qry(db);
+         qry.prepare("UPDATE data SET  name=?,username=?,password=?,url=?,dateTime=? WHERE name=?");
+         qry.addBindValue(name);
+         qry.addBindValue(uname);
+         qry.addBindValue(pass);
+         qry.addBindValue(url);
+         qry.addBindValue(date);
+         qry.addBindValue(cname);
+         qry.exec();
+        rel=qry.lastError().text();
+
+    }
+    else{
+
+       rel= "<font color='red'>[+]DB couldn't open!</font>";
+    }
+  db.close();
+  return rel;
+}
+
+QString database::deleteEntity(QString entyName){
+    QString rel="false";
+    if(db.open() )
+     {
+        QSqlQuery qry(db);
+         qry.prepare("delete from data WHERE name=?");
+         qry.addBindValue(entyName);
+         qry.exec();
+         rel=qry.lastError().text();
+
+    }
+    else{
+
+       rel= "<font color='red'>[+]DB couldn't open!</font>";
+    }
+  db.close();
+  return rel;
+}

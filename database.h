@@ -20,6 +20,9 @@ public slots:
     QString insertdata(QString dbname,QString name,QString uname,QString pass,QString url,QString date);
     void setdb(QString dbname);
     QStringList dblist();
+    QString updateData(QString cname,QString name,QString uname,QString pass,QString url,QString date);
+    QString deleteEntity(QString entyName);
+
     
 };
 

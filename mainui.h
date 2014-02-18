@@ -58,6 +58,10 @@ private slots:
 
     void on_btnUpdate_clicked();
 
+    void on_btnGenUpdate_clicked();
+
+    void on_pushButton_20_clicked();
+
 private:
     Ui::mainUi *ui;
     adddb adbfrom;
