@@ -23,5 +23,8 @@
         <file>delete.ico</file>
         <file>update.ico</file>
         <file>remove.ico</file>
+        <file>dbdelete.ico</file>
+        <file>changepass.ico</file>
+        <file>dbpera.ico</file>
     </qresource>
 </RCC>

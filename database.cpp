@@ -13,20 +13,19 @@ database::database(QWidget *parent) :
 {
 }
 void database::setdb(QString dbname){
-    QDir dir(QApplication::applicationDirPath()+"/db/");
+    QDir dir(QDir::homePath()+"/.TuxPass/db/");
      db.setDatabaseName(dir.filePath(dbname));
 }
 
 QStringList database::dblist(){
     QStringList nameFilter("*.sdb");
-    QDir dir(QApplication::applicationDirPath()+"/db/");
+    QDir dir(QDir::homePath()+"/.TuxPass/db/");
     QStringList dbfiles = dir.entryList(nameFilter);
     return dbfiles;
 }
 
 QString database::connect(){
-        QDir dir(QApplication::applicationDirPath()+"/db/");
-         db.setDatabaseName(dir.filePath("main.sdb"));
+        setdb("main.sdb");
 
          if(db.open() )
           {
@@ -73,7 +72,7 @@ QString database::login(QString user,QString pass){
 QString database::createdb(QString dbname,QString pass){
     QString success = "false";
     dbname=dbname+".sdb";
-    QDir dir(QApplication::applicationDirPath()+"/db/");
+    QDir dir(QDir::homePath()+"/.TuxPass/db/");
     QString dbpath =dir.filePath(dbname);
     if(QFile::exists(dbpath) )
     {
@@ -91,7 +90,7 @@ QString database::createdb(QString dbname,QString pass){
                            success="<font color='green'>[+] Database created.</font>";
                        } else {
                            const QSqlError error = queryt1.lastError();
-                           success="<font color='red'>[+] "+error.text()+"/font>";
+                           success="<font color='red'>[+] "+error.text()+"</font>";
                        }
 
                 //crete data table
@@ -133,8 +132,8 @@ QString database::createdb(QString dbname,QString pass){
      return success;
 }
 QString database::loaddb(QString dbname,QString pass){
-    QDir dir(QApplication::applicationDirPath()+"/db/");
-     db.setDatabaseName(dir.filePath(dbname));
+
+     setdb(dbname);
      QString rel="false";
      if(db.open() )
       {

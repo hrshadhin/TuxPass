@@ -18,6 +18,7 @@ mainUi::mainUi(QWidget *parent) :
     ui(new Ui::mainUi)
 {
     ui->setupUi(this);
+    ui->tab_1->setFocus();
     ui->label_status->setText(gdbstatus);
     connect(ui->listWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(itemClicked(QListWidgetItem*)));
     connect(ui->listWidget_update,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(itemClickedUp(QListWidgetItem*)));
@@ -30,50 +31,13 @@ mainUi::~mainUi()
     delete ui;
 }
 
-void mainUi::on_pushButton_clicked()
-{
-    adddb adform(this);
-    adform.setModal(true);
-    adform.exec();
-    if(ui->label_status->text().compare("<font color='blue'>[+]No Connected DB: None</font>")!=0){
-        QStringList ls = ui->label_status->text().split(':');
-        QStringList mls =ls[1].split('<');
-        database setdb;
-        setdb.setdb(mls[0]);
-    }
-}
 
 void mainUi::on_pushButton_4_clicked()
 {
     this->close();
 }
 
-void mainUi::on_pushButton_5_clicked()
-{
 
-
-    //above code need to be functionalize
-
-    ldbform.setModal(true);
-
-
-    ldbform.exec();
-     QString strnew = ldbform.myVal();
-
-     if(strnew.contains("DB is:")){
-
-         dataload();
-         ui->label_status->setText(strnew);
-         QStringList ls = ui->label_status->text().split(':');
-         QStringList mls =ls[1].split('<');
-         ui->label_dbnameDel->setText(mls[0]);
-
-     }
-
-
-
-
-}
 void mainUi::dataload(){
     names.clear();
     database datab;
@@ -194,12 +158,26 @@ void mainUi::clear(){
     ui->lineEdit_filter_update->setText("");
     ui->lineEdit_filter_delete->setText("");
     ui->label_status->setText(gdbstatus);
-    ldbform.gval="<font color='blue'>[+]Connected DB: None</font>";
+    DbOparation dbop;
+    dbop.gval="<font color='blue'>[+]Connected DB: None</font>";
 }
 
 void mainUi::on_pushButton_12_clicked()
 {
+    DbOparation dbOp(this);
+    dbOp.setModal(true);
+    dbOp.exec();
+    QString strnew = dbOp.myVal();
 
+    if(strnew.contains("DB is:")){
+
+        dataload();
+        ui->label_status->setText(strnew);
+        QStringList ls = ui->label_status->text().split(':');
+        QStringList mls =ls[1].split('<');
+        ui->label_dbnameDel->setText(mls[0]);
+
+    }
 
 }
 //password generate

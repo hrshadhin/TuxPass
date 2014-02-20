@@ -2,7 +2,7 @@
 #define LOGIN_H
 #include <QMainWindow>
 #include <mainui.h>
-#include <loaddb.h>
+
 namespace Ui {
 class login;
 }
@@ -21,7 +21,7 @@ private slots:
 private:
     Ui::login *ui;
     mainUi mainF;
-    loaddb ldbForm;
+
 
 
 };

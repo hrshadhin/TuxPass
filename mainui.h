@@ -1,10 +1,8 @@
 #ifndef MAINUI_H
 #define MAINUI_H
 #include <QWidget>
-#include <adddb.h>
-#include <loaddb.h>
 #include <QListWidgetItem>
-
+#include <dboparation.h>
 namespace Ui {
 class mainUi;
 }
@@ -18,11 +16,11 @@ public:
     ~mainUi();
     
 private slots:
-    void on_pushButton_clicked();
+
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
+
 
     void on_pushButton_6_clicked();
     void itemClicked(QListWidgetItem* item);
@@ -64,8 +62,7 @@ private slots:
 
 private:
     Ui::mainUi *ui;
-    adddb adbfrom;
-    loaddb ldbform;
+
 
 
 };

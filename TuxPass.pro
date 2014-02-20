@@ -16,24 +16,21 @@ TEMPLATE = app
 SOURCES += main.cpp\
         login.cpp \
     database.cpp \
-    adddb.cpp \
-    loaddb.cpp \
     mainui.cpp \
     passgenerate.cpp \
-    endecrypter.cpp
+    endecrypter.cpp \
+    dboparation.cpp
 
 HEADERS  += login.h \
     database.h \
-    adddb.h \
-    loaddb.h \
     mainui.h \
     passgenerate.h \
-    endecrypter.h
+    endecrypter.h \
+    dboparation.h
 
 FORMS    += login.ui \
-    adddb.ui \
-    loaddb.ui \
-    mainui.ui
+    mainui.ui \
+    dboparation.ui
 
 RESOURCES += \
     icons/rec.qrc
