@@ -296,3 +296,38 @@ QString database::checkPass(QString dbname,QString pass){
   db.close();
   return rel;
 }
+QString database::changePass(QString dbname,QString olPass,QString nePass){
+    setdb(dbname);
+    QString rel="false";
+    if(db.open() )
+     {
+        QSqlQuery qry(db),qry2(db);
+         qry.prepare("select * from password WHERE pass=?");
+         qry.addBindValue(olPass);
+         if(qry.exec()){
+             if(qry.next()){
+                 qry2.prepare("update password set pass=? where pass=?");
+                 qry2.addBindValue(nePass);
+                 qry2.addBindValue(olPass);
+                 if(qry2.exec())
+                 {
+                      rel="true";
+                 }
+                 else
+                     rel=qry2.lastError().text();
+             }
+             else{
+                 rel="Wrong password! Cant't Change to new password.";
+             }
+         }
+         else
+             rel=qry.lastError().text();
+
+    }
+    else{
+
+       rel= "<font color='red'>[+]DB couldn't open!</font>";
+    }
+  db.close();
+  return rel;
+}

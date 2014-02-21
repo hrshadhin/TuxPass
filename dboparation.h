@@ -29,6 +29,8 @@ private slots:
     void on_pushButton_3_clicked();
     void loadList();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::DbOparation *ui;
 };

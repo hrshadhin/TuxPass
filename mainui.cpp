@@ -73,7 +73,7 @@ void mainUi::on_pushButton_6_clicked()
 
     if(ui->label_status->text().compare(gdbstatus)==0){
 
-        QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>Database hasn't selected yet.\nFirst load database by 'Load DB' from control panel</font>"));
+        QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>Database hasn't selected yet.\nFirst load database frome 'DB Operation'.</font>"));
 
     }
     else{
@@ -169,6 +169,7 @@ void mainUi::clear(){
 void mainUi::on_pushButton_12_clicked()
 {
     DbOparation dbOp(this);
+    dbOp.gval=ui->label_status->text();
     dbOp.setModal(true);
     dbOp.exec();
     QString strnew = dbOp.myVal();

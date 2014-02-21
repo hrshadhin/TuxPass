@@ -4,13 +4,13 @@
 #include "QDebug"
 #include <endecrypter.h>
 #include <QDir>
+
 DbOparation::DbOparation(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DbOparation)
 {
 
     ui->setupUi(this);
-    gval="<font color='blue'>[+]Connected DB: None</font>";
     ui->tab_1->setFocus();
 }
 
@@ -161,5 +161,51 @@ void DbOparation::on_pushButton_3_clicked()
 
 
     QMessageBox::information(0, QString("Error!"), QString(msg));
+
+}
+
+void DbOparation::on_pushButton_4_clicked()
+{
+    QString msg;
+    QStringList ls =gval.split(':');
+    QStringList mls =ls[1].split('<');
+    qDebug()<<ui->listWidget_change->currentItem()->text();
+    qDebug()<<mls[0];
+    if(ui->listWidget_change->selectedItems().count()!=1 || ui->lineEdit_chNewPass->text()=="" || ui->lineEdit_chOldPass->text()=="")
+   {
+             msg="<font color='red'>Please select one db and give passwods!</font>";
+
+   }
+   else if(ui->listWidget_change->currentItem()->text().compare(mls[0])==0)
+    {
+        msg="<font color='red'> Your Selected DB is now connected.For delete first detouch it.</font>";
+
+   }
+   else if(ui->lineEdit_chOldPass->text().length()<26 && ui->lineEdit_chNewPass->text().length()<26)
+   {
+                 database db;
+                 enDecrypter encry;
+                 QString rel=db.changePass(ui->listWidget_change->currentItem()->text(),encry.encrypt(ui->lineEdit_chOldPass->text()),encry.encrypt(ui->lineEdit_chNewPass->text()));
+
+                 if(rel.compare("true")==0){
+
+                     msg="<font color='green'> Password Change successfully :)</font>";
+                             ui->lineEdit_chNewPass->setText("");
+                     ui->lineEdit_chOldPass->setText("");
+                 }
+                 else
+                 {
+                     msg="<font color='red'>"+rel+"</font>";
+                 }
+  }
+  else
+   {
+
+       msg="<font color='red'>Password must be less than 25 characters!</font>";
+   }
+
+
+
+   QMessageBox::information(0, QString("Error!"), QString(msg));
 
 }
