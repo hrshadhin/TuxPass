@@ -268,3 +268,31 @@ QString database::deleteEntity(QString entyName){
   db.close();
   return rel;
 }
+//password test
+QString database::checkPass(QString dbname,QString pass){
+    setdb(dbname);
+    QString rel="false";
+    if(db.open() )
+     {
+        QSqlQuery qry(db);
+         qry.prepare("select * from password WHERE pass=?");
+         qry.addBindValue(pass);
+         if(qry.exec()){
+             if(qry.next()){
+                 rel="true";
+             }
+             else{
+                 rel="Wrong password!";
+             }
+         }
+         else
+             rel=qry.lastError().text();
+
+    }
+    else{
+
+       rel= "<font color='red'>[+]DB couldn't open!</font>";
+    }
+  db.close();
+  return rel;
+}

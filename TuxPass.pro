@@ -19,18 +19,24 @@ SOURCES += main.cpp\
     mainui.cpp \
     passgenerate.cpp \
     endecrypter.cpp \
-    dboparation.cpp
+    dboparation.cpp \
+    tools.cpp \
+    helpcontents.cpp
 
 HEADERS  += login.h \
     database.h \
     mainui.h \
     passgenerate.h \
     endecrypter.h \
-    dboparation.h
+    dboparation.h \
+    tools.h \
+    helpcontents.h
 
 FORMS    += login.ui \
     mainui.ui \
-    dboparation.ui
+    dboparation.ui \
+    tools.ui \
+    helpcontents.ui
 
 RESOURCES += \
     icons/rec.qrc

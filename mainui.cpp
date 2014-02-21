@@ -10,6 +10,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QRegExp>
+
 QString gdbstatus="<font color='blue'>[+]No Connected DB: None</font>";
 QStringList names;
 QList<QStringList> List;
@@ -134,6 +135,9 @@ QStringList mainUi::getIteminfo(QString x){
 
 void mainUi::on_pushButton_3_clicked()
 {
+    HelpContents hl(this);
+    hl.setModal(true);
+    hl.exec();
 
 }
 
@@ -366,4 +370,11 @@ void mainUi::on_pushButton_20_clicked()
             QMessageBox::critical(0, QString("Error!"), QString("<font color='red'>"+result+"</font>"));
         }
     }
+}
+
+void mainUi::on_pushButton_2_clicked()
+{
+    Tools tl(this);
+    tl.setModal(true);
+    tl.exec();
 }

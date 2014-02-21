@@ -61,7 +61,7 @@
         <string/>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <property name="iconSize">
         <size>
@@ -282,17 +282,17 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_7">
              <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <widget class="QLineEdit" name="lineEdit_deletePass">
+               <property name="maxLength">
+                <number>25</number>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>158</width>
-                 <height>20</height>
-                </size>
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
                </property>
-              </spacer>
+               <property name="placeholderText">
+                <string>Db password</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_3">
@@ -354,7 +354,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_4">
+            <widget class="QLineEdit" name="lineEdit_chOldPass">
              <property name="maxLength">
               <number>25</number>
              </property>
@@ -375,7 +375,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_5">
+            <widget class="QLineEdit" name="lineEdit_chNewPass">
              <property name="maxLength">
               <number>25</number>
              </property>

@@ -51,7 +51,7 @@ Operation</string>
          <item>
           <widget class="QPushButton" name="pushButton_2">
            <property name="text">
-            <string>Setting</string>
+            <string>Tools</string>
            </property>
            <property name="icon">
             <iconset resource="icons/rec.qrc">
@@ -68,7 +68,7 @@ Operation</string>
          <item>
           <widget class="QPushButton" name="pushButton_3">
            <property name="text">
-            <string>About</string>
+            <string>Help</string>
            </property>
            <property name="icon">
             <iconset resource="icons/rec.qrc">

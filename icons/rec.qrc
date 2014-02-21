@@ -26,5 +26,6 @@
         <file>dbdelete.ico</file>
         <file>changepass.ico</file>
         <file>dbpera.ico</file>
+        <file>dev.png</file>
     </qresource>
 </RCC>

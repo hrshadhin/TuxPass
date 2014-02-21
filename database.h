@@ -22,6 +22,7 @@ public slots:
     QStringList dblist();
     QString updateData(QString cname,QString name,QString uname,QString pass,QString url,QString date);
     QString deleteEntity(QString entyName);
+    QString checkPass(QString dbname,QString pass);
 
     
 };

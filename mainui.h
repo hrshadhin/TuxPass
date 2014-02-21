@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QListWidgetItem>
 #include <dboparation.h>
+#include <helpcontents.h>
+#include <tools.h>
 namespace Ui {
 class mainUi;
 }
@@ -59,6 +61,8 @@ private slots:
     void on_btnGenUpdate_clicked();
 
     void on_pushButton_20_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::mainUi *ui;
