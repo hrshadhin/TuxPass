@@ -208,7 +208,6 @@ void mainUi::on_pushButton_13_clicked()
         QStringList ls = ui->label_status->text().split(':');
         QStringList mls =ls[1].split('<');
 
-
          enDecrypter endecry;
          QString name=endecry.encrypt(ui->lineEdit_name2->text());
          QString uname=endecry.encrypt(ui->lineEdit_uname2->text());
@@ -300,6 +299,9 @@ void mainUi::on_btnUpdate_clicked()
         QMessageBox::critical(0, QString("Error!"), QString("<font color='red'> You left empty fields!!!</font>"));
 
     }
+    else if(ui->listWidget_update->selectedItems().count()!=1){
+        QMessageBox::critical(0, QString("Error!"), QString("<font color='red'> First select a entity from listbox.</font>"));
+    }
     else
     {
         QStringList ls = ui->label_status->text().split(':');
@@ -378,4 +380,24 @@ void mainUi::on_pushButton_2_clicked()
     Tools tl(this);
     tl.setModal(true);
     tl.exec();
+}
+
+void mainUi::on_tabWidget_currentChanged(int index)
+{
+    ui->lineEdit_uname1->setText("");
+    ui->lineEdit_uname2->setText("");
+    ui->lineEdit_unameUpdate->setText("");
+    ui->label_name1->setText("");
+    ui->lineEdit_name2->setText("");
+    ui->label_entyNameDel->setText("N/A");
+    ui->lineEdit_nameUdate->setText("");
+    ui->lineEdit_pass1->setText("");
+    ui->lineEdit_pass2->setText("");
+    ui->lineEdit_passUpdate->setText("");
+    ui->lineEdit_url1->setText("");
+    ui->lineEdit_url2->setText("");
+    ui->lineEdit_urlUpdate->setText("");
+    ui->label_date1->setText("");
+   // ui->label_dbnameDel->setText("");
+
 }

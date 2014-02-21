@@ -1,7 +1,8 @@
 #include "login.h"
 #include "ui_login.h"
 #include "database.h"
-
+#include <endecrypter.h>
+#include <QDebug>
 login::login(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::login)
@@ -10,12 +11,6 @@ login::login(QWidget *parent) :
     database db(this);
     QString msg=db.connect();
     ui->label_3->setText(msg);
-
-
-
-
-
-
 
 }
 
@@ -27,8 +22,9 @@ login::~login()
 
 void login::on_pushButton_clicked()
 {
-    database db(this);
-    QString result=db.login(ui->lineEdit->text(),ui->lineEdit_2->text());
+    database db;
+    enDecrypter encry;
+    QString result=db.login(encry.encrypt(ui->lineEdit->text()),encry.encrypt(ui->lineEdit_2->text()));
     if(result=="true"){
         db.dbclose();
         mainF.show();
@@ -39,4 +35,10 @@ void login::on_pushButton_clicked()
         ui->label_3->setText(result);
     }
 
+}
+
+
+void login::on_lineEdit_2_editingFinished()
+{
+    on_pushButton_clicked();
 }

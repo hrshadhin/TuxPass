@@ -11,7 +11,7 @@ DbOparation::DbOparation(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    ui->tab_1->setFocus();
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 DbOparation::~DbOparation()
@@ -112,8 +112,8 @@ void DbOparation::on_pushButton_3_clicked()
      QString msg;
      QStringList ls =gval.split(':');
      QStringList mls =ls[1].split('<');
-     qDebug()<<ui->listWidget_delete->currentItem()->text();
-     qDebug()<<mls[0];
+    // qDebug()<<ui->listWidget_delete->currentItem()->text();
+   //  qDebug()<<mls[0];
     if(ui->listWidget_delete->selectedItems().count()!=1 || ui->lineEdit_deletePass->text()=="")
     {
               msg="<font color='red'>Please select one db and give passwod!</font>";
@@ -169,8 +169,8 @@ void DbOparation::on_pushButton_4_clicked()
     QString msg;
     QStringList ls =gval.split(':');
     QStringList mls =ls[1].split('<');
-    qDebug()<<ui->listWidget_change->currentItem()->text();
-    qDebug()<<mls[0];
+   // qDebug()<<ui->listWidget_change->currentItem()->text();
+    //qDebug()<<mls[0];
     if(ui->listWidget_change->selectedItems().count()!=1 || ui->lineEdit_chNewPass->text()=="" || ui->lineEdit_chOldPass->text()=="")
    {
              msg="<font color='red'>Please select one db and give passwods!</font>";

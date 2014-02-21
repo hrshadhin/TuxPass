@@ -15,6 +15,11 @@ public:
     explicit Tools(QWidget *parent = 0);
     ~Tools();
     
+private slots:
+
+
+    void on_btnMaster_clicked();
+
 private:
     Ui::Tools *ui;
 };

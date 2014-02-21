@@ -24,7 +24,8 @@ public slots:
     QString deleteEntity(QString entyName);
     QString checkPass(QString dbname,QString pass);
     QString changePass(QString dbname,QString olPass,QString nePass);
-
+    QString changeMasterPass(QString name,QString olPass,QString nePass);
+    QString addMasterUser(QString uname,QString pass);
     
 };
 

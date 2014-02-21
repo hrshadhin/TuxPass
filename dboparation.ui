@@ -103,9 +103,6 @@
            </item>
            <item>
             <widget class="QLineEdit" name="lineEdit_2">
-             <property name="maxLength">
-              <number>25</number>
-             </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
              </property>
@@ -216,9 +213,6 @@
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
               <widget class="QLineEdit" name="lineEdit_loaddbPass">
-               <property name="maxLength">
-                <number>25</number>
-               </property>
                <property name="echoMode">
                 <enum>QLineEdit::Password</enum>
                </property>
@@ -283,9 +277,6 @@
             <layout class="QHBoxLayout" name="horizontalLayout_7">
              <item>
               <widget class="QLineEdit" name="lineEdit_deletePass">
-               <property name="maxLength">
-                <number>25</number>
-               </property>
                <property name="echoMode">
                 <enum>QLineEdit::Password</enum>
                </property>
@@ -349,15 +340,12 @@
            <item>
             <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>Old Password</string>
+              <string>Old Password  </string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLineEdit" name="lineEdit_chOldPass">
-             <property name="maxLength">
-              <number>25</number>
-             </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
              </property>
@@ -376,9 +364,6 @@
            </item>
            <item>
             <widget class="QLineEdit" name="lineEdit_chNewPass">
-             <property name="maxLength">
-              <number>25</number>
-             </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
              </property>

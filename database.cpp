@@ -49,20 +49,19 @@ void database::dbclose(){
 QString database::login(QString user,QString pass){
     QSqlQuery qry;
     QString suck="false";
-    if(qry.exec("select * from user where username='"+user+"' and password='"+pass+"'") )
+    if(qry.exec("select * from users where username='"+user+"' and password='"+pass+"'") )
     {
-        int count=0;
-        while(qry.next()){
-            count++;
-        }
-        if(count==1){
+
+        if(qry.next()){
             suck="true";
         }
-        else if(count<1){
+        else{
             suck="<font color='red'>[+] User/password wrong!</font>";
         }
 
     }
+    else
+        suck=qry.lastError().text();
 
     return suck;
 
@@ -202,8 +201,7 @@ QList<QStringList> database::loaddata(){
 }
 
 QString database::insertdata(QString dbname,QString name,QString uname,QString pass,QString url,QString date){
-    QDir dir(QApplication::applicationDirPath()+"/db/");
-     db.setDatabaseName(dir.filePath(dbname));
+    setdb(dbname);
      QString rel="false";
      if(db.open() )
       {
@@ -319,6 +317,67 @@ QString database::changePass(QString dbname,QString olPass,QString nePass){
              else{
                  rel="Wrong password! Cant't Change to new password.";
              }
+         }
+         else
+             rel=qry.lastError().text();
+
+    }
+    else{
+
+       rel= "<font color='red'>[+]DB couldn't open!</font>";
+    }
+  db.close();
+  return rel;
+}
+//change master pass
+QString database::changeMasterPass(QString name,QString olPass,QString nePass){
+    setdb("main.sdb");
+    QString rel="false";
+    if(db.open() )
+     {
+        QSqlQuery qry(db),qry2(db);
+         qry.prepare("select * from users where username=? and password=?");
+         qry.addBindValue(name);
+         qry.addBindValue(olPass);
+         if(qry.exec()){
+             if(qry.next()){
+                 qry2.prepare("update users set password=? where password=?");
+                 qry2.addBindValue(nePass);
+                 qry2.addBindValue(olPass);
+                 if(qry2.exec())
+                 {
+                      rel="true";
+                 }
+                 else
+                     rel=qry2.lastError().text();
+             }
+             else{
+                 rel="Wrong password! Cant't Change to new password.";
+             }
+         }
+         else
+             rel=qry.lastError().text();
+
+    }
+    else{
+
+       rel= "<font color='red'>[+]DB couldn't open!</font>";
+    }
+  db.close();
+  return rel;
+}
+//add user to main db
+QString database::addMasterUser(QString uname,QString pass){
+    setdb("main.sdb");
+    QString rel="false";
+    if(db.open() )
+     {
+        QSqlQuery qry(db);
+        qry.prepare("insert into users (username,password) values(?,?)");
+         qry.addBindValue(uname);
+         qry.addBindValue(pass);
+         if(qry.exec()){
+            rel="true";
          }
          else
              rel=qry.lastError().text();
