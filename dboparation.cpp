@@ -59,7 +59,7 @@ void DbOparation::loadList(){
     ui->listWidget_delete->clear();
     ui->listWidget_change->clear();
      foreach (QString item, dbfiles) {
-         if(!(item=="main.sdb")){
+         if(!(item=="master.sdb")){
              ui->listWidget_load->addItem(item);
              ui->listWidget_delete->addItem(item);
              ui->listWidget_change->addItem(item);
@@ -131,7 +131,7 @@ void DbOparation::on_pushButton_3_clicked()
                   QString rel=db.checkPass(ui->listWidget_delete->currentItem()->text(),encry.encrypt(ui->lineEdit_deletePass->text()));
                   if(rel.compare("true")==0){
 
-                      QString dbpathf = QDir::homePath()+"/.TuxPass/db/"+ui->listWidget_delete->currentItem()->text();
+                      QString dbpathf = QDir::homePath()+"/.tuxPass/db/"+ui->listWidget_delete->currentItem()->text();
 
                       if(QFile::remove(dbpathf))
                       {

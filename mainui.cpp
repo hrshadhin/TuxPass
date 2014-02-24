@@ -19,7 +19,7 @@ mainUi::mainUi(QWidget *parent) :
     ui(new Ui::mainUi)
 {
     ui->setupUi(this);
-    ui->tab_1->setFocus();
+    ui->tabWidget->setCurrentIndex(0);
     ui->label_status->setText(gdbstatus);
     connect(ui->listWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(itemClicked(QListWidgetItem*)));
     connect(ui->listWidget_update,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(itemClickedUp(QListWidgetItem*)));

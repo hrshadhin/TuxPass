@@ -26,7 +26,7 @@ void login::on_pushButton_clicked()
     enDecrypter encry;
     QString result=db.login(encry.encrypt(ui->lineEdit->text()),encry.encrypt(ui->lineEdit_2->text()));
     if(result=="true"){
-        db.dbclose();
+
         mainF.show();
 
         this->hide();

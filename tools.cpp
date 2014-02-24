@@ -30,8 +30,8 @@ void Tools::on_btnMaster_clicked()
        {
                      database db;
                      enDecrypter encry;
-                     qDebug()<<ui->lineEditMasterOlP->text();
-                     QString rel=db.changeMasterPass(encry.encrypt("sysadmin"),encry.encrypt(ui->lineEditMasterOlP->text()),encry.encrypt(ui->lineEditMasterNewP->text()));
+
+                     QString rel=db.changeMasterPass(encry.encrypt("sys"),encry.encrypt(ui->lineEditMasterOlP->text()),encry.encrypt(ui->lineEditMasterNewP->text()));
 
                      if(rel.compare("true")==0){
 

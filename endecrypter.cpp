@@ -6,7 +6,7 @@ enDecrypter::enDecrypter()
 
 QString enDecrypter::encrypt(QString str)
 {
-    QString enString="",keyString="abc1234++";
+    QString enString="",keyString="8768280e19e10a8ff812a41acd3710b477b620ff3abee939ffed80c254efb726001a61cea43aec962a8016c45f217ee1103e86ce4cbb596104f2efe055a4a60c";
     int strlen=str.length();
     int l=0,j=0;
     while(l<strlen){

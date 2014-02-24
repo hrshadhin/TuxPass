@@ -26,6 +26,7 @@ public slots:
     QString changePass(QString dbname,QString olPass,QString nePass);
     QString changeMasterPass(QString name,QString olPass,QString nePass);
     QString addMasterUser(QString uname,QString pass);
+    QString createMaster();
     
 };
 

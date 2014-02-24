@@ -7,25 +7,26 @@
 #include <QSqlError>
 #include <QFile>
 #include <QSqlRecord>
+QString dbCustPath="/.tuxpass/db/";
 QSqlDatabase db = QSqlDatabase::addDatabase( "QSQLITE" );
 database::database(QWidget *parent) :
     QWidget(parent)
 {
 }
 void database::setdb(QString dbname){
-    QDir dir(QDir::homePath()+"/.TuxPass/db/");
+    QDir dir(QDir::homePath()+dbCustPath);
      db.setDatabaseName(dir.filePath(dbname));
 }
 
 QStringList database::dblist(){
     QStringList nameFilter("*.sdb");
-    QDir dir(QDir::homePath()+"/.TuxPass/db/");
+    QDir dir(QDir::homePath()+dbCustPath);
     QStringList dbfiles = dir.entryList(nameFilter);
     return dbfiles;
 }
 
 QString database::connect(){
-        setdb("main.sdb");
+        setdb("master.sdb");
 
          if(db.open() )
           {
@@ -39,7 +40,7 @@ QString database::connect(){
 
         }
 
-
+    db.close();
 
 }
 void database::dbclose(){
@@ -47,22 +48,28 @@ void database::dbclose(){
 }
 
 QString database::login(QString user,QString pass){
-    QSqlQuery qry;
+    setdb("master.sdb");
     QString suck="false";
-    if(qry.exec("select * from users where username='"+user+"' and password='"+pass+"'") )
-    {
+    if(db.open()){
+           QSqlQuery qry(db);
+            if(qry.exec("select * from users where username='"+user+"' and password='"+pass+"'") )
+            {
 
-        if(qry.next()){
-            suck="true";
-        }
-        else{
-            suck="<font color='red'>[+] User/password wrong!</font>";
-        }
+                if(qry.next()){
+                    suck="true";
+                }
+                else{
+                    suck="<font color='red'>[+] User/password wrong!</font>";
+                }
 
+            }
+            else
+                suck="<font color='red'>"+qry.lastError().text()+"</font>";
+      }
+      else{
+        suck="<font color='red'>[+]DB couldn't open!</font>";
     }
-    else
-        suck=qry.lastError().text();
-
+    db.close();
     return suck;
 
 
@@ -71,7 +78,7 @@ QString database::login(QString user,QString pass){
 QString database::createdb(QString dbname,QString pass){
     QString success = "false";
     dbname=dbname+".sdb";
-    QDir dir(QDir::homePath()+"/.TuxPass/db/");
+    QDir dir(QDir::homePath()+dbCustPath);
     QString dbpath =dir.filePath(dbname);
     if(QFile::exists(dbpath) )
     {
@@ -329,9 +336,45 @@ QString database::changePass(QString dbname,QString olPass,QString nePass){
   db.close();
   return rel;
 }
+//create master db
+QString database::createMaster(){
+    QString success = "false";
+    QString dbname="master.sdb";
+    QDir dir(QDir::homePath()+dbCustPath);
+    QString dbpath =dir.filePath(dbname);
+    if(QFile::exists(dbpath) )
+    {
+         success="<font color='red'>[+] Database Exits!</font>";
+    }
+    else
+    {
+        db.setDatabaseName(dbpath);
+
+           if (db.open()) {
+               //create usertable
+               const QString createTb = "CREATE TABLE IF NOT EXISTS users (username varchar not null unique,password varchar not null);";
+                       QSqlQuery queryt1(db);
+                       if (queryt1.exec(createTb)) {
+                           success="<font color='green'>[+] Database created.</font>";
+
+                       } else {
+                           const QSqlError error = queryt1.lastError();
+                           success="<font color='red'>[+] "+error.text()+"</font>";
+                       }
+
+              }
+           else {
+                  const QSqlError error = db.lastError();
+                  success="<font color='red'>[+] "+error.text()+"/font>";
+              }
+        db.close();
+    }
+     return success;
+}
+
 //change master pass
 QString database::changeMasterPass(QString name,QString olPass,QString nePass){
-    setdb("main.sdb");
+    setdb("master.sdb");
     QString rel="false";
     if(db.open() )
      {
@@ -368,7 +411,7 @@ QString database::changeMasterPass(QString name,QString olPass,QString nePass){
 }
 //add user to main db
 QString database::addMasterUser(QString uname,QString pass){
-    setdb("main.sdb");
+    setdb("master.sdb");
     QString rel="false";
     if(db.open() )
      {

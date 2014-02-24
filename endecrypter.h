@@ -6,6 +6,7 @@ class enDecrypter
 public:
     enDecrypter();
     QString encrypt(QString str);
+
 private:
     char encoder(char k,char v);
 };
