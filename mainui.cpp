@@ -245,19 +245,19 @@ QString mainUi::datetimenow(){
 
 void mainUi::on_pushButton_11_clicked()
 {
-    QClipboard *clip;
+    QClipboard *clip= QApplication::clipboard();
     clip->setText(ui->lineEdit_pass2->text());
 }
 
 void mainUi::on_pushButton_8_clicked()
 {
-    QClipboard *clip;
+    QClipboard *clip= QApplication::clipboard();
     clip->setText(ui->lineEdit_pass1->text());
 }
 
 void mainUi::on_pushButton_7_clicked()
 {
-    QClipboard *clip;
+    QClipboard *clip= QApplication::clipboard();
     clip->setText(ui->lineEdit_uname1->text());
 }
 
